@@ -10,20 +10,20 @@ jobs:
       - docker/push:
           image: ${DOCKER_LOGIN}/circleci
   pytest:
-    executor:
-      docker:
-        image: ${DOCKER_LOGIN}/circleci:${CIRCLE_SHA1}
+    executor: main-image
     steps:
       - pytest
   pylint:
-    executor:
-      docker:
-        image: ${DOCKER_LOGIN}/circleci:${CIRCLE_SHA1}
+    executor: main-image
     steps:
       - find . -type f -name "*.py" | xargs pylint
 orbs:
   docker: circleci/docker@1.0.0
 version: 2.1
+executors:
+  main-image:
+    docker:
+      image: ${DOCKER_LOGIN}/circleci:${CIRCLE_SHA1}
 workflows:
   commit:
     jobs:
