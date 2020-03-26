@@ -1,0 +1,10 @@
+version: 2.1
+orbs:
+  welcome: circleci/docker@1.0.0 
+workflows:
+  "🐳 Build & Push":
+    executor: docker/docker
+    jobs:
+      - checkout
+      - docker/build:
+        image: "nicolaspascual/circleci:$CIRCLE_SHA1"
