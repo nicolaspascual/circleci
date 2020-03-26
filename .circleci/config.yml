@@ -7,6 +7,8 @@ jobs:
       - docker/check
       - docker/build:
           image: ${DOCKER_LOGIN}/circleci
+      - docker/push:
+          image: ${DOCKER_LOGIN}/circleci
   pytest:
     executor: docker/docker
     steps:
