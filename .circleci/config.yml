@@ -16,7 +16,7 @@ jobs:
             username: ${DOCKER_LOGIN}
             password: ${DOCKER_PASSWORD}
     steps:
-      - run: pytest
+      - run: cd /app && pytest
   pylint:
     docker:
       - image: ${DOCKER_LOGIN}/circleci:${CIRCLE_SHA1}
