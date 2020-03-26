@@ -12,11 +12,17 @@ jobs:
   pytest:
     docker:
         - image: ${DOCKER_LOGIN}/circleci
+          auth:
+            username: ${DOCKER_LOGIN}
+            password: ${DOCKER_PASSWORD}
     steps:
       - run: pytest
   pylint:
     docker:
       - image: ${DOCKER_LOGIN}/circleci
+        auth:
+          username: ${DOCKER_LOGIN}
+          password: ${DOCKER_PASSWORD}
     steps:
       - run: find . -type f -name "*.py" | xargs pylint
 
@@ -30,8 +36,10 @@ workflows:
       - build-and-push:
           context: DOCKER
       - pytest:
+          context: DOCKER
           requires:
             - build-and-push
       - pylint:
+          context: DOCKER
           requires:
             - build-and-push
