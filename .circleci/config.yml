@@ -10,11 +10,7 @@ jobs:
       - docker/push:
           image: ${DOCKER_LOGIN}/circleci
   pytest:
-    docker:
-        - image: ${DOCKER_LOGIN}/circleci:${CIRCLE_SHA1}
-          auth:
-            username: ${DOCKER_LOGIN}
-            password: ${DOCKER_PASSWORD}
+    executor: python-repo
     steps:
       - run: cd /app && pytest
   pylint:
@@ -29,6 +25,14 @@ jobs:
 orbs:
   docker: circleci/docker@1.0.0
 version: 2.1
+
+executors:
+  python-repo:
+    docker:
+      - image: ${DOCKER_LOGIN}/circleci:${CIRCLE_SHA1}
+        auth:
+          username: ${DOCKER_LOGIN}
+          password: ${DOCKER_PASSWORD}
 
 workflows:
   commit:
