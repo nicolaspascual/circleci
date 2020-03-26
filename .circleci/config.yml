@@ -12,13 +12,9 @@ jobs:
   pytest:
     executor: python-repo
     steps:
-      - run: cd /app && pytest
+      - run: pytest
   pylint:
-    docker:
-      - image: ${DOCKER_LOGIN}/circleci:${CIRCLE_SHA1}
-        auth:
-          username: ${DOCKER_LOGIN}
-          password: ${DOCKER_PASSWORD}
+    executor: python-repo
     steps:
       - run: find . -type f -name "*.py" | xargs pylint
 
