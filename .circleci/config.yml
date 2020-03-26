@@ -12,7 +12,9 @@ jobs:
   pytest:
     executor: python-repo
     steps:
-      - run: pytest
+      - run: pytest  --junitxml=./test-results/pytest/results.xml
+      - store_test_results:
+          path: test-results
   pylint:
     executor: python-repo
     steps:
