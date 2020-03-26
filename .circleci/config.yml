@@ -10,20 +10,14 @@ jobs:
       - docker/push:
           image: ${DOCKER_LOGIN}/circleci
   pytest:
-    executor: docker/docker
+    image: ${DOCKER_LOGIN}/circleci:${CIRCLE_SHA1}
     steps:
-      - setup_remote_docker
-      - docker/pull:
-          images: ${DOCKER_LOGIN}/circleci:${CIRCLE_SHA1}
       - run:
           name: "Run pytest"
           command: docker run ${DOCKER_LOGIN}/circleci:${CIRCLE_SHA1} pytest
   pylint:
-    executor: docker/docker
+    image: ${DOCKER_LOGIN}/circleci:${CIRCLE_SHA1}
     steps:
-      - setup_remote_docker
-      - docker/pull:
-          images: ${DOCKER_LOGIN}/circleci:${CIRCLE_SHA1}
       - run:
           name: "Run pytest"
           command: docker run ${DOCKER_LOGIN}/circleci:${CIRCLE_SHA1} sh -c 'find . -type f -name "*.py" | xargs pylint'
@@ -36,10 +30,8 @@ workflows:
       - build-and-push:
           context: DOCKER
       - pytest:
-          context: DOCKER
           requires:
             - build-and-push
       - pylint:
-          context: DOCKER
           requires:
             - build-and-push
