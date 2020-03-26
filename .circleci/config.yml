@@ -11,12 +11,12 @@ jobs:
           image: ${DOCKER_LOGIN}/circleci
   pytest:
     docker:
-        - image: circleci/cci-demo-docker-primary:0.0.1
+        - image: ${DOCKER_LOGIN}/circleci
     steps:
       - run: pytest
   pylint:
     docker:
-      - image: circleci/cci-demo-docker-primary:0.0.1
+      - image: ${DOCKER_LOGIN}/circleci
     steps:
       - run: find . -type f -name "*.py" | xargs pylint
 
