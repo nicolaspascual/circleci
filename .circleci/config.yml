@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   welcome: circleci/docker@1.0.0 
 workflows:
-  "🐳 Build & Push":
+  🐳_build_&_push:
     executor: docker/docker
     jobs:
       - checkout
