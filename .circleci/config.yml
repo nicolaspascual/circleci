@@ -39,10 +39,8 @@ workflows:
       - build-and-push:
           context: DOCKER
       - pytest:
-          context: DOCKER
           requires:
             - build-and-push
       - pylint:
-          context: DOCKER
           requires:
             - build-and-push
