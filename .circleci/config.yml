@@ -10,11 +10,13 @@ jobs:
       - docker/push:
           image: ${DOCKER_LOGIN}/circleci
   pytest:
-    image: ${DOCKER_LOGIN}/circleci:${CIRCLE_SHA1}
-    command: pytest
+    docker:
+      image: ${DOCKER_LOGIN}/circleci:${CIRCLE_SHA1}
+      command: pytest
   pylint:
-    image: ${DOCKER_LOGIN}/circleci:${CIRCLE_SHA1}
-    command: find . -type f -name "*.py" | xargs pylint
+    docker:
+      image: ${DOCKER_LOGIN}/circleci:${CIRCLE_SHA1}
+      command: find . -type f -name "*.py" | xargs pylint
 orbs:
   docker: circleci/docker@1.0.0
 version: 2.1
