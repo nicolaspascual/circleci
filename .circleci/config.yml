@@ -24,6 +24,7 @@ version: 2.1
 
 executors:
   python-repo:
+    working_directory: /app
     docker:
       - image: ${DOCKER_LOGIN}/circleci:${CIRCLE_SHA1}
         auth:
