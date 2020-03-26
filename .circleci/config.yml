@@ -1,12 +1,15 @@
-version: 2.1
+jobs:
+  build-and-push:
+    executor: docker/docker
+    steps:
+      - checkout
+      - docker/check
+      - docker/build:
+          image: nicolaspascual/circleci:$CIRCLE_SHA1
 orbs:
-  welcome: circleci/docker@1.0.0
+  docker: circleci/docker@x.y.z
+version: 2.1
 workflows:
-  - build_and_push:
+  commit:
     jobs:
-      - build_and_push:
-        executor: docker/docker
-        steps:
-          - checkout
-          - docker/build:
-            image: "nicolaspascual/circleci:$CIRCLE_SHA1"
+      - build-and-push
