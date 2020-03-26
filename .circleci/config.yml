@@ -11,7 +11,7 @@ jobs:
           image: ${DOCKER_LOGIN}/circleci
   pytest:
     docker:
-        - image: ${DOCKER_LOGIN}/circleci:${CIRCLECI_SHA}
+        - image: ${DOCKER_LOGIN}/circleci:${CIRCLECI_SHA1}
           auth:
             username: ${DOCKER_LOGIN}
             password: ${DOCKER_PASSWORD}
@@ -19,7 +19,7 @@ jobs:
       - run: pytest
   pylint:
     docker:
-      - image: ${DOCKER_LOGIN}/circleci:${CIRCLECI_SHA}
+      - image: ${DOCKER_LOGIN}/circleci:${CIRCLECI_SHA1}
         auth:
           username: ${DOCKER_LOGIN}
           password: ${DOCKER_PASSWORD}
