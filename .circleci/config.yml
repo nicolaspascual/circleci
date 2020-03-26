@@ -5,7 +5,7 @@ jobs:
       - checkout
       - docker/check
       - docker/build:
-          image: $DOCKER_LOGIN/circleci
+          image: ${DOCKER_LOGIN}/circleci
 orbs:
   docker: circleci/docker@1.0.0
 version: 2.1
