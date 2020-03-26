@@ -12,18 +12,18 @@ jobs:
   pytest:
     executor: main-image
     steps:
-      - pytest
+      - run: pytest
   pylint:
     executor: main-image
     steps:
-      - find . -type f -name "*.py" | xargs pylint
+      - run: find . -type f -name "*.py" | xargs pylint
 orbs:
   docker: circleci/docker@1.0.0
 version: 2.1
 executors:
   main-image:
     docker:
-      image: ${DOCKER_LOGIN}/circleci:${CIRCLE_SHA1}
+      - image: ${DOCKER_LOGIN}/circleci:${CIRCLE_SHA1}
 workflows:
   commit:
     jobs:
