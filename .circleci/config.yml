@@ -23,7 +23,7 @@ version: 2.1
 executors:
   main-image:
     docker:
-      - image: ${DOCKER_LOGIN}/circleci:${CIRCLE_SHA1}
+      - ${DOCKER_LOGIN}/circleci:${CIRCLE_SHA1}
 workflows:
   commit:
     jobs:
