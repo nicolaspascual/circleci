@@ -11,7 +11,7 @@ jobs:
     executor: docker/docker
     steps:
       - docker/pull:
-          image: ${DOCKER_LOGIN}/circleci
+          images: ${DOCKER_LOGIN}/circleci
       - run:
           name: "Run pytest"
           command: docker run ${DOCKER_LOGIN}/circleci:${CIRCLE_SHA1} pytest
